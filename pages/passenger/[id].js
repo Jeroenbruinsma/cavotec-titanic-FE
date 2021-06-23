@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { Fragment } from "react";
 import { useRouter } from 'next/router'
@@ -18,6 +19,14 @@ export default function PassengerDetails({ person }) {
   const useStyles = makeStyles({
     table: {
       minWidth: 650,
+    },
+    box: {
+      height: 50,
+      display: "flex",
+    },
+    rightButton: {
+      justifyContent: "flex-end",
+      alignItems: "center",
     },
   });
   const classes = useStyles();
@@ -63,7 +72,15 @@ export default function PassengerDetails({ person }) {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button onClick={deletePassenger}>Delete this passenger</Button>
+      <Box
+          component="span"
+          m={1} //margin
+          className={`${classes.rightButton} ${classes.box}`}
+        >
+          <Button variant="contained" color="secondary" onClick={deletePassenger}>Delete this passenger</Button>
+        </Box>
+
+      
     </Fragment>
   );
 }
