@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useRouter } from "next/dist/client/router";
 
 export default function index({ passengers }) {
   const useStyles = makeStyles({
@@ -15,6 +16,12 @@ export default function index({ passengers }) {
     },
   });
   const classes = useStyles();
+  const router = useRouter()
+
+  const navigateTo = (id) => {
+    console.log("clicked", id)
+    router.push(`/passenger/${id}`)
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -28,12 +35,12 @@ export default function index({ passengers }) {
         </TableHead>
         <TableBody>
           {passengers.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
+            <TableRow key={row.id} id={row.id} onClick={e => navigateTo(e.target.id)}>
+              <TableCell id={row.id} component="th" scope="row" >
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.age}</TableCell>
-              <TableCell align="right">{row.sex}</TableCell>
+              <TableCell id={row.id} align="right">{row.age}</TableCell>
+              <TableCell id={row.id} align="right">{row.sex}</TableCell>
             </TableRow>
           ))}
         </TableBody>
