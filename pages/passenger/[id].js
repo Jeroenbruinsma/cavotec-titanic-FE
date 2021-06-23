@@ -13,8 +13,6 @@ import { Fragment } from "react";
 import { useRouter } from 'next/router'
 import {backendUrl} from '../../constants'
 
-
-
 export default function PassengerDetails({ person }) {
   const useStyles = makeStyles({
     table: {
@@ -23,6 +21,7 @@ export default function PassengerDetails({ person }) {
     box: {
       height: 50,
       display: "flex",
+      marginLeft: "10px"
     },
     rightButton: {
       justifyContent: "flex-end",
@@ -34,11 +33,8 @@ export default function PassengerDetails({ person }) {
   const router = useRouter()
 
   const deletePassenger = async () => {
-    console.log(query.id)
     try{
-        console.log("backend should be at", backendUrl)
         const response = await axios.delete(`${backendUrl}/people/${query.id}`)
-        console.log("resp", response)
         router.push(`/passenger`)
 
     }catch(err){
@@ -77,10 +73,9 @@ export default function PassengerDetails({ person }) {
           m={1} //margin
           className={`${classes.rightButton} ${classes.box}`}
         >
-          <Button variant="contained" color="secondary" onClick={deletePassenger}>Delete this passenger</Button>
+          <Button variant="contained" color="secondary" style={{margin: "10px", backgroundColor: "#a82319"}} onClick={deletePassenger}>Delete this passenger</Button>
+          <Button variant="contained" color="primary" onClick={ () => {router.push(`/edit/${query.id}`)} }>Edit this passenger</Button>
         </Box>
-
-      
     </Fragment>
   );
 }
