@@ -33,6 +33,11 @@
   flex-grow: 1;
 }
 
+.nextJs a{
+  color: #0070f3;
+  text-decoration: none;
+}
+
 .title a {
   color: #0070f3;
   text-decoration: none;
