@@ -39,17 +39,6 @@ export default function index({person}) {
           </Table>
         </TableContainer>
       );
-      // return (
-    //     <div>
-    //        <h1> Name: {person.name}</h1>
-    //        <h2> Age: {person.age}</h2>
-    //        <h2> Sex: {person.sex}</h2>
-    //        <h2> Survived: {person.survived}</h2>
-    //        <h2> Class: {person.passengerClass}</h2>
-    //        <h2> Parents/Children aboard {person.parentsOrChildrenAboard}</h2>
-    //        <h2> Siblings/spouses aboard {person.siblingsOrSpousesAboard}</h2>
-    //     </div>
-    // )
 }
 
 export async function getServerSideProps({ params }) {
