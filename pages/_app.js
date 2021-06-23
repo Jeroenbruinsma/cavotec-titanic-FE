@@ -28,10 +28,9 @@ export default function MyApp(props) {
       </Head>
         <Navbar/>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Container maxWidth="lg">
-        <Component {...pageProps} />
+          <Container maxWidth="lg">
+            <Component {...pageProps} />
         </Container>
       </ThemeProvider>
     </React.Fragment>
