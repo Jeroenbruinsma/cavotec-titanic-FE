@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useRouter } from "next/dist/client/router";
 
-export default function index({ passengers }) {
+export default function PassengerList({ passengers }) {
   const useStyles = makeStyles({
     table: {
       minWidth: 650,

@@ -2,6 +2,7 @@ import { Container } from "@material-ui/core";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import boatImage from "../public/images/titanic.jpg"
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
 
         <p className={styles.description}>Passenger managment system</p>
         <Container maxWidth="sm">
-          <img src="/images/titanic.jpg" alt="boat" />
+          <Image src={boatImage} alt="boat" />
         </Container>
         <div className={styles.grid}>
           <a

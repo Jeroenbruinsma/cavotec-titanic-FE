@@ -10,7 +10,7 @@ import { useState } from "react";
 import EuroIcon from "@material-ui/icons/Euro";
 import { backendUrl } from "../../constants";
 
-export default function index({ passengers }) {
+export default function Index() {
   const [name, setName] = useState("");
   const [sex, setSex] = useState("male");
   const [age, setAge] = useState(18);
@@ -133,10 +133,9 @@ export default function index({ passengers }) {
           </TextField>
 
           <TextField
-            id="genderField"
+            id="passengerClass"
             select
             label="passengerClass"
-            onChange={(e) => setGender(e.target.value)}
             helperText=""
             variant="filled"
             type="number"

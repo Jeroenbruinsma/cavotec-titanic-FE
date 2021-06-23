@@ -14,7 +14,7 @@ import {backendUrl} from '../../constants'
 
 
 
-export default function index({ person }) {
+export default function PassengerDetails({ person }) {
   const useStyles = makeStyles({
     table: {
       minWidth: 650,
