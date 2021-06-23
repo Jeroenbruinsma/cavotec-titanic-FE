@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
@@ -16,7 +17,7 @@ export default function Index() {
   const [age, setAge] = useState(18);
   const [siblingsOrSpousesAboard, setSiblingsOrSpousesAboard] = useState(0);
   const [parentsOrChildrenAboard, setParentsOrChildrenAboard] = useState(0);
-  const [fare, setFare] = useState(15);
+  const [fare, setFare] = useState(0);
   const [passengerClass, setPassengerClass] = useState(1);
   const [survived, setSurvived] = useState(true);
 
@@ -24,8 +25,25 @@ export default function Index() {
     root: {
       "& .MuiTextField-root": {
         margin: theme.spacing(1),
-        width: 200,
+        width: "100%",
       },
+    },
+    submit: {
+      "& .MuiTextField-submit": {
+        margin: theme.spacing(1),
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+    },
+    box: {
+      height: 50,
+      display: "flex",
+    },
+    rightButton: {
+      justifyContent: "flex-end",
+      alignItems: "center",
     },
   }));
 
@@ -43,6 +61,10 @@ export default function Index() {
     { value: true, label: "yes" },
     { value: false, label: "no" },
   ];
+
+  const parseFare = (data) => {
+    setFare(data.replace(",", "."));
+  };
 
   const classes = useStyles();
   const router = useRouter();
@@ -78,11 +100,9 @@ export default function Index() {
       >
         <div>
           <TextField
-            // error
             id="nameField"
             label="Name"
             defaultValue=""
-            helperText="Incorrect entry."
             variant="filled"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -98,6 +118,8 @@ export default function Index() {
             value={age}
             onChange={(e) => setAge(parseFloat(e.target.value))}
           />
+        </div>
+        <div>
           <TextField
             id="genderField"
             select
@@ -131,7 +153,8 @@ export default function Index() {
               </MenuItem>
             ))}
           </TextField>
-
+        </div>
+        <div>
           <TextField
             id="passengerClass"
             select
@@ -140,7 +163,7 @@ export default function Index() {
             variant="filled"
             type="number"
             value={passengerClass}
-            onChange={(e) => setPassengerClass(e.target.value)}
+            onChange={(e) => setPassengerClass(parseFloat(e.target.value))}
           >
             {passengerClassOptions.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -157,17 +180,22 @@ export default function Index() {
             defaultValue="0"
             variant="filled"
             value={siblingsOrSpousesAboard}
-            onChange={(e) => setSiblingsOrSpousesAboard(e.target.value)}
+            onChange={(e) =>
+              setSiblingsOrSpousesAboard(parseFloat(e.target.value))
+            }
           />
+        </div>
+        <div>
           <TextField
             id="filled-error-helper-text"
             label="parentsOrChildrenAboard"
             type="number"
             defaultValue="0"
-            helperText="Incorrect entry."
             variant="filled"
             value={parentsOrChildrenAboard}
-            onChange={(e) => setParentsOrChildrenAboard(e.target.value)}
+            onChange={(e) =>
+              setParentsOrChildrenAboard(parseFloat(e.target.value))
+            }
           />
         </div>
         <div>
@@ -177,7 +205,7 @@ export default function Index() {
             defaultValue=""
             variant="filled"
             value={fare}
-            onChange={(e) => setFare(e.target.value)}
+            onChange={(e) => parseFare(e.target.value)}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -187,7 +215,15 @@ export default function Index() {
             }}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Box
+          component="span"
+          m={1} //margin
+          className={`${classes.rightButton} ${classes.box}`}
+        >
+          <Button variant="contained" color="secondary" type="submit">
+            Submit
+          </Button>
+        </Box>
       </form>
     </Container>
   );
