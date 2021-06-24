@@ -20,7 +20,7 @@ export default function Index({person}) {
   const [fare, setFare] = useState(person.fare);
   const [passengerClass, setPassengerClass] = useState(person.passengerClass);
   const [survived, setSurvived] = useState(person.survived);
-  console.log("person", person)
+  
   const useStyles = makeStyles((theme) => ({
     root: {
       "& .MuiTextField-root": {
@@ -72,7 +72,7 @@ export default function Index({person}) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${backendUrl}/people`, {
+      const response = await axios.put(`${backendUrl}/people/${person.id}`, {
         name,
         age,
         fare,
